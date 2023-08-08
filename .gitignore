@@ -1,0 +1,33 @@
+# IDE files
+.idea/
+*.iml
+*.name
+
+# Build files
+build/
+.gradle/
+buildOutputCleanup.lock
+cache.properties
+checksums.lock
+dependencies?accessors.lock
+executionHistory.bin
+executionHistory.lock
+file-system.probe
+fileHashes.lock
+gc.properties
+*.bin
+*.lock
+md5-checksums.bin
+sha1-checksums.bin
+
+# Gradle Wrapper files
+gradle-wrapper.jar
+gradle-wrapper.properties
+
+# Local configuration
+local.properties
+gradle.properties
+
+# Other
+.DS_Store
+allure-results/
