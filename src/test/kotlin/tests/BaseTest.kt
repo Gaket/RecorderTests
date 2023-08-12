@@ -1,26 +1,39 @@
 package tests
 
+import com.codeborne.selenide.WebDriverRunner
 import config.AppiumConfig
 import config.EnvironmentConfig
 import io.appium.java_client.android.Activity
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 
+
 abstract class BaseTest {
     private val appiumConfig = AppiumConfig()
-    private val driver = appiumConfig.driver
+    val driver = appiumConfig.driver
 
     private fun grantPermissions() {
         val osName = System.getProperty("os.name").lowercase()
-        val command = when {
-            osName.contains("win") -> arrayOf("cmd.exe", "/c", "adb shell pm grant ${EnvironmentConfig.APP_PACKAGE} android.permission.RECORD_AUDIO")
-            else -> arrayOf("bash", "-c", "adb shell pm grant ${EnvironmentConfig.APP_PACKAGE} android.permission.RECORD_AUDIO")
+
+        val permissions = listOf(
+            "android.permission.RECORD_AUDIO",
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE"
+        )
+
+        for (permission in permissions) {
+            val command = when {
+                osName.contains("win") -> arrayOf("cmd.exe", "/c", "adb shell pm grant ${EnvironmentConfig.APP_PACKAGE} $permission")
+                else -> arrayOf("bash", "-c", "adb shell pm grant ${EnvironmentConfig.APP_PACKAGE} $permission")
+            }
+            val process = Runtime.getRuntime().exec(command)
+            val exitCode = process.waitFor()
+            if (exitCode != 0) {
+                throw RuntimeException("Failed to grant permission: $permission with exit code: $exitCode")
+            }
         }
-        val process = Runtime.getRuntime().exec(command)
-        val exitCode = process.waitFor()
-        if (exitCode != 0) {
-            /*TODO: какие проблемы можем здесь встретить?*/
-        }
+
+        /*TODO: разобраться с исчерпывающим списком разрешений + выработать политику тестирования*/
     }
 
 
@@ -44,6 +57,7 @@ abstract class BaseTest {
         closeApp()
         grantPermissions()
         startActivity()
+        WebDriverRunner.setWebDriver(driver)
     }
 
     @AfterEach
