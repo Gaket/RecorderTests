@@ -4,21 +4,15 @@ import org.junit.jupiter.api.Test
 import tests.BaseTest
 import tests.pageobjects.MainPageObject
 import tests.pageobjects.RecordingPageObject
+import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
 
-class TestLaunchApp : BaseTest() {
+class TestTimerWhenRecordingIsOn : BaseTest() {
     @Test
-    fun launchAppAndWait() {
-        Thread.sleep(5000) //просто хардкод
-    }
-}
-
-
-class TestStartRecording : BaseTest() {
-    @Test
-    fun testClickPes() {
+    fun test() {
+        val waitTime = Random.nextInt(5, 76)
         val mainPageObject = MainPageObject()
         mainPageObject.clickRecordButton()
-        RecordingPageObject().checkUiTimeInProgress(12.seconds)
+        RecordingPageObject().checkUiTimeInProgress(waitTime.seconds)
     }
 }

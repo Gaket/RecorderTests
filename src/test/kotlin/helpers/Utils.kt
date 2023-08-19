@@ -1,6 +1,7 @@
 package helpers
 
 import java.util.*
+import kotlin.time.Duration
 
 fun generateRandomString(len: Int): String {
     return UUID.randomUUID().toString().substring(0, len)
@@ -47,3 +48,5 @@ fun secondsToUiTime(seconds: Int): String {
     return String.format("%02d:%02d:%02d", hours, minutes, secs)
     //возможно придется скейлить, чтобы метод работал с kotlin.duration, тогда поменять сигнатуру timeToUiTime
 }
+
+fun convertKotlinSecondsToJava(time: Duration) = java.time.Duration.ofSeconds(time.inWholeSeconds)

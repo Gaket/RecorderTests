@@ -6,11 +6,12 @@ import config.EnvironmentConfig
 import io.appium.java_client.android.Activity
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
+import java.io.IOException
 
 
 abstract class BaseTest {
     private val appiumConfig = AppiumConfig()
-    val driver = appiumConfig.driver
+    private val driver = appiumConfig.driver
 
     private fun grantPermissions() {
         val osName = System.getProperty("os.name").lowercase()
@@ -64,5 +65,29 @@ abstract class BaseTest {
     fun teardown() {
         closeApp()
         driver.quit()
+        clearMetaData() // Нужно ли нам здесь добавлять какую-то логику для чистки?
+        clearRecordings() // Нужно ли нам здесь добавлять какую-то логику для чистки?
+    }
+
+    private fun clearMetaData() {
+        try {
+            val clearJsonCommand = "adb shell rm -r \$EXTERNAL_STORAGE/Android/data/com.rimidalv.dictaphone/files/*"
+            Runtime.getRuntime().exec(clearJsonCommand).waitFor()
+        } catch (e: IOException) {
+            println("Error executing the ADB command: ${e.message}")
+        } catch (e: InterruptedException) {
+            println("ADB command was interrupted: ${e.message}")
+        }
+    }
+
+    private fun clearRecordings() {
+        try {
+            val clearRecordingsCommand = "adb shell rm -r \$EXTERNAL_STORAGE/Music/Recordings/Wear\\ Audio\\ Recorder/*"
+            Runtime.getRuntime().exec(clearRecordingsCommand).waitFor()
+        } catch (e: IOException) {
+            println("Error executing the ADB command: ${e.message}")
+        } catch (e: InterruptedException) {
+            println("ADB command was interrupted: ${e.message}")
+        }
     }
 }
