@@ -2,10 +2,17 @@ package tests.smoke.general
 
 import org.junit.jupiter.api.Test
 import tests.BaseTest
+import tests.pageobjects.MainPageObject
+import tests.pageobjects.RecordingPageObject
+import kotlin.random.Random
+import kotlin.time.Duration.Companion.seconds
 
-class LaunchAppTest : BaseTest() {
+class TestTimerWhenRecordingIsOn : BaseTest() {
     @Test
-    fun launchAppAndWait() {
-        Thread.sleep(5000) //просто хардкод
+    fun test() {
+        val waitTime = Random.nextInt(5, 76)
+        val mainPageObject = MainPageObject()
+        mainPageObject.clickRecordButton()
+        RecordingPageObject().checkUiTimeInProgress(waitTime.seconds)
     }
 }
