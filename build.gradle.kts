@@ -8,9 +8,7 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
+
 
 
 dependencies {
@@ -19,6 +17,12 @@ dependencies {
     testImplementation("commons-io:commons-io:2.13.0")
     testRuntimeOnly("org.slf4j:slf4j-simple:2.0.7")
     testImplementation("io.qameta.allure:allure-junit5:2.16.1")
+    implementation("io.github.serpro69:kotlin-faker:1.14.0")
+
+}
+
+repositories {
+    mavenCentral()
 }
 
 tasks.test {
