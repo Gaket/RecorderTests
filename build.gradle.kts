@@ -18,6 +18,7 @@ dependencies {
     testRuntimeOnly("org.slf4j:slf4j-simple:2.0.7")
     testImplementation("io.qameta.allure:allure-junit5:2.16.1")
     implementation("io.github.serpro69:kotlin-faker:1.14.0")
+    implementation("io.qase:qase-api:3.1.0")
 
 }
 
