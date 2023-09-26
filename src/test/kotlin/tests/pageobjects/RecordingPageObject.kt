@@ -2,6 +2,7 @@ package tests.pageobjects
 
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.appium.SelenideAppium.`$`
+import com.codeborne.selenide.appium.SelenideAppiumElement
 import helpers.convertKotlinSecondsToJava
 import helpers.convertTimeToInt
 import helpers.secondsToUiTime
@@ -14,8 +15,10 @@ class RecordingPageObject {
 
     fun clickStopRecording() {
         recordStopButton.click()
-        val saveRecordingWindowTitle = `$`(AppiumBy.id("com.rimidalv.dictaphone:id/dialog_title"))
-        saveRecordingWindowTitle.shouldBe(Condition.visible)
+    }
+
+    fun saveRecordingWindowTitle():SelenideAppiumElement{
+        return `$`(AppiumBy.id("com.rimidalv.dictaphone:id/dialog_title"))
     }
 
     fun checkUiTimeInProgress(duration: Duration) {
