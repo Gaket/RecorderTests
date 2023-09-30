@@ -8,7 +8,6 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import java.io.IOException
 
-
 abstract class BaseTest {
     private val appiumConfig = AppiumConfig()
     private val driver = appiumConfig.driver
@@ -37,7 +36,6 @@ abstract class BaseTest {
         /*TODO: разобраться с исчерпывающим списком разрешений + выработать политику тестирования*/
     }
 
-
     private fun startActivity() {
         /*TODO: избавиться от использования depricated method*/
         driver.startActivity(
@@ -51,7 +49,6 @@ abstract class BaseTest {
     private fun closeApp() {
         driver.terminateApp(EnvironmentConfig.APP_PACKAGE)
     }
-
 
     @BeforeEach
     fun setup() {

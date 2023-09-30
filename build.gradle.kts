@@ -3,6 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.7.10"
     application
+    id("org.jlleitschuh.gradle.ktlint") version "11.5.1"
+}
+
+ktlint {
+    verbose.set(true)
+    outputToConsole.set(true)
+    coloredOutput.set(true)
 }
 
 group = "org.example"
@@ -11,7 +18,6 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
 }
-
 
 dependencies {
     testImplementation("com.codeborne:selenide-appium:6.17.0")

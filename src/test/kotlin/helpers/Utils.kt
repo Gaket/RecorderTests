@@ -22,7 +22,6 @@ enum class SymbolsRange(val range: CharRange) {
     SPECIFIC_SYMBOLS('!'..'&')
 }
 
-
 fun convertTimeToInt(uiTime: String): Int {
     val regex = Regex("""^\d{2}:\d{2}:\d{2}$""")
     if (regex.matches(uiTime)) {
@@ -34,7 +33,9 @@ fun convertTimeToInt(uiTime: String): Int {
             2 -> timeParts[0] * 60 + timeParts[1]
             else -> throw IllegalArgumentException("Invalid time format: $uiTime")
         }
-    } else throw IllegalArgumentException("Invalid time format: $uiTime")
+    } else {
+        throw IllegalArgumentException("Invalid time format: $uiTime")
+    }
 }
 
 fun formatTime(hours: Int, minutes: Int, seconds: Int): String {
@@ -46,7 +47,7 @@ fun secondsToUiTime(seconds: Int): String {
     val minutes = (seconds % 3600) / 60
     val secs = seconds % 60
     return String.format("%02d:%02d:%02d", hours, minutes, secs)
-    //возможно придется скейлить, чтобы метод работал с kotlin.duration, тогда поменять сигнатуру timeToUiTime
+    // возможно придется скейлить, чтобы метод работал с kotlin.duration, тогда поменять сигнатуру timeToUiTime
 }
 
 fun convertKotlinSecondsToJava(time: Duration) = java.time.Duration.ofSeconds(time.inWholeSeconds)
