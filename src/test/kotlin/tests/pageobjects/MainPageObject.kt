@@ -1,15 +1,17 @@
 package tests.pageobjects
 
-import com.codeborne.selenide.Condition
-import com.codeborne.selenide.appium.SelenideAppium.`$`
-import io.appium.java_client.AppiumBy
+import com.codeborne.selenide.Condition.visible
+import helpers.element
 
 class MainPageObject {
-    private val recordButton = `$`(AppiumBy.id("com.rimidalv.dictaphone:id/recPauseBtn"))
+    private val recordButton = element("com.rimidalv.dictaphone:id/recPauseBtn")
+    private val title = element("com.rimidalv.dictaphone:id/textView2")
 
     fun clickRecordButton() {
         recordButton.click()
-        val recordingPageTitle = `$`(AppiumBy.id("com.rimidalv.dictaphone:id/textView2"))
-        recordingPageTitle.shouldBe(Condition.visible)
+    }
+
+    fun checkVisibilityOfTitle() {
+        title.shouldBe(visible)
     }
 }

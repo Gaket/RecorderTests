@@ -1,5 +1,8 @@
 package helpers
 
+import com.codeborne.selenide.appium.SelenideAppium
+import com.codeborne.selenide.appium.SelenideAppiumElement
+import io.appium.java_client.AppiumBy
 import java.util.*
 import kotlin.time.Duration
 
@@ -51,3 +54,5 @@ fun secondsToUiTime(seconds: Int): String {
 }
 
 fun convertKotlinSecondsToJava(time: Duration) = java.time.Duration.ofSeconds(time.inWholeSeconds)
+
+fun element(selector: String): SelenideAppiumElement = SelenideAppium.`$`(AppiumBy.id(selector))

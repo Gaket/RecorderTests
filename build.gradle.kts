@@ -15,8 +15,6 @@ ktlint {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
-
-
 dependencies {
     testImplementation("com.codeborne:selenide-appium:6.17.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
@@ -25,7 +23,6 @@ dependencies {
     testImplementation("io.qameta.allure:allure-junit5:2.16.1")
     implementation("io.github.serpro69:kotlin-faker:1.14.0")
     implementation("io.qase:qase-api:3.1.0")
-
 }
 
 repositories {
