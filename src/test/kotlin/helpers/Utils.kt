@@ -55,4 +55,4 @@ fun secondsToUiTime(seconds: Int): String {
 
 fun convertKotlinSecondsToJava(time: Duration) = java.time.Duration.ofSeconds(time.inWholeSeconds)
 
-fun element(selector: String): SelenideAppiumElement = SelenideAppium.`$`(AppiumBy.id(selector))
+fun elementById(id: String): SelenideAppiumElement = SelenideAppium.`$`(AppiumBy.id(id))

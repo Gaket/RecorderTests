@@ -2,22 +2,19 @@ package tests.pageobjects
 
 import com.codeborne.selenide.Condition.text
 import com.codeborne.selenide.appium.SelenideAppiumElement
-import helpers.convertKotlinSecondsToJava
-import helpers.convertTimeToInt
-import helpers.element
-import helpers.secondsToUiTime
+import helpers.*
 import kotlin.time.Duration
 
-class RecordingPageObject {
-    private val timer = element("com.rimidalv.dictaphone:id/time")
-    private val recordStopButton = element("com.rimidalv.dictaphone:id/btnStop")
+class RecordingPageObject(application: ApplicationContainer) : BasePageObject(application) {
+    private val timer = elementById("com.rimidalv.dictaphone:id/time")
+    private val recordStopButton = elementById("com.rimidalv.dictaphone:id/btnStop")
 
     fun clickStopRecording() {
         recordStopButton.click()
     }
 
     fun saveRecordingWindowTitle(): SelenideAppiumElement {
-        return element("com.rimidalv.dictaphone:id/dialog_title")
+        return elementById("com.rimidalv.dictaphone:id/dialog_title")
     }
 
     fun checkUiTimeInProgress(duration: Duration) {
