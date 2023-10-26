@@ -1,6 +1,8 @@
 package helpers
 
-import com.codeborne.selenide.appium.SelenideAppium
+import com.codeborne.selenide.ElementsCollection
+import com.codeborne.selenide.Selenide.`$$`
+import com.codeborne.selenide.appium.SelenideAppium.`$`
 import com.codeborne.selenide.appium.SelenideAppiumElement
 import io.appium.java_client.AppiumBy
 import java.util.*
@@ -55,4 +57,5 @@ fun secondsToUiTime(seconds: Int): String {
 
 fun convertKotlinSecondsToJava(time: Duration) = java.time.Duration.ofSeconds(time.inWholeSeconds)
 
-fun elementById(id: String): SelenideAppiumElement = SelenideAppium.`$`(AppiumBy.id(id))
+fun elementById(id: String): SelenideAppiumElement = `$`(AppiumBy.id(id))
+fun elementsById(id: String): ElementsCollection = `$$`(AppiumBy.id(id))
