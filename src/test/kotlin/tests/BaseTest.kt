@@ -3,6 +3,7 @@ package tests
 import com.codeborne.selenide.WebDriverRunner
 import config.AppiumConfig
 import config.EnvironmentConfig
+import helpers.ApplicationContainer
 import io.appium.java_client.android.Activity
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -11,6 +12,7 @@ import java.io.IOException
 abstract class BaseTest {
     private val appiumConfig = AppiumConfig()
     private val driver = appiumConfig.driver
+    val application = ApplicationContainer()
 
     private fun grantPermissions() {
         val osName = System.getProperty("os.name").lowercase()

@@ -6,6 +6,8 @@
 # Build files
 build/
 .gradle/
+allure-results/
+allure-report/
 buildOutputCleanup.lock
 cache.properties
 checksums.lock

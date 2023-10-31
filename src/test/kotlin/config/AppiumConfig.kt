@@ -7,7 +7,6 @@ import java.net.URL
 
 class AppiumConfig {
     val driver: AndroidDriver
-
     init {
         val capabilities = DesiredCapabilities()
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android")

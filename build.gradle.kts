@@ -15,7 +15,13 @@ ktlint {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
+val kotlinVersion = "1.7.10"
+val log4jVersion = "2.19.0"
+val allureVersion = "2.9.6"
+
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
     testImplementation("com.codeborne:selenide-appium:6.17.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     testImplementation("commons-io:commons-io:2.13.0")
@@ -23,6 +29,8 @@ dependencies {
     testImplementation("io.qameta.allure:allure-junit5:2.16.1")
     implementation("io.github.serpro69:kotlin-faker:1.14.0")
     implementation("io.qase:qase-api:3.1.0")
+    implementation("org.apache.logging.log4j:log4j-api:$log4jVersion")
+    implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
 }
 
 repositories {
